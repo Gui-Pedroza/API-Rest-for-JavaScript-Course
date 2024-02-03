@@ -1,3 +1,9 @@
-export default () => {
-  console.log('hello')
-}
+import express from 'express'
+import homeRoutes from './src/routes/homeRoutes'
+
+const app = express()
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
+app.use('/', homeRoutes)
+
+export default app

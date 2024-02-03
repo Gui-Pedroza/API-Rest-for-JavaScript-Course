@@ -1,3 +1,6 @@
-import sayHi from './app'
+import app from './app'
 
-sayHi()
+const port = 3030
+app.listen(port, () => {
+  console.log('server running at ', port)
+})
