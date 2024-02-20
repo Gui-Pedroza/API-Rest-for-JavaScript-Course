@@ -1,0 +1,19 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debugar API REST Node.js",
+      "type": "node",
+      "request": "launch",
+      "program": "app.js", // Caminho para o arquivo principal da sua aplicação
+      "runtimeExecutable": "nodemon", // Ou use "node" se você não estiver usando o Nodemon
+      "stopOnEntry": false,
+      "restart": true,
+      "runtimeArgs": ["--inspect"], // Ativa o modo de inspeção para depuração
+      "sourceMaps": true,
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "outFiles": ["dist/**/*.js"] // Caminho para os arquivos JavaScript transpilados, se aplicável
+    }
+  ]
+}

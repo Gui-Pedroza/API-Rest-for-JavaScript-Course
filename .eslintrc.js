@@ -24,5 +24,6 @@ module.exports = {
   rules: {
     semi: ['warn', 'never'],
     'no-console': 'off',
+    'no-param-reassign': 'off',
   },
 }
