@@ -4,7 +4,7 @@ import * as userController from '../controllers/userController'
 const router = new Router()
 
 router.post('/', userController.store)
-router.get('/list-all', userController.listAll)
-router.get('/find-by-id/:id', userController.findOne)
+router.get('/', userController.index)
+router.get('/:id', userController.show)
 
 export default router
