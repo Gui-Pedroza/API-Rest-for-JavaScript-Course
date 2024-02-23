@@ -25,7 +25,29 @@ export const show = async (req, res) => {
     const user = await User.findByPk(req.params.id)
     if (user) {
       res.status(200).json(user)
-    } else throw new Error('Registro não encontrado')
+    } else {
+      res.status(400).json({ errors: 'Registro não encontrado' })
+    }
+  } catch (error) {
+    res.status(400).json({ erros: error.errors.map((e) => e.message) })
+  }
+}
+
+export const update = async (req, res) => {
+  try {
+    if (!req.params.id) {
+      return res.status(400).json({ errors: 'ID não enviado' })
+    }
+    const user = await User.findByPk(req.params.id)
+    if (!user) {
+      return res.status(400).json({ errors: 'Usuário não encontrado' })
+    }
+    const updatedUser = await User.update(req.body, {
+      where: {
+        id: req.params.id,
+      },
+    })
+    return res.status(200).json(updatedUser)
   } catch (error) {
     res.status(400).json(error.message)
   }
@@ -33,8 +55,20 @@ export const show = async (req, res) => {
 
 export const deleteUser = async (req, res) => {
   try {
-    const { id } = req.params
+    if (!req.params.id) {
+      return res.status(400).json({ errors: 'ID não enviado' })
+    }
+    const user = await User.findByPk(req.params.id)
+    if (!user) {
+      return res.status(400).json({ errors: 'Usuário não encontrado' })
+    }
+    const rowsDeleted = await User.destroy({
+      where: {
+        id: req.params.id,
+      },
+    })
+    return res.status(200).json(rowsDeleted)
   } catch (error) {
-    res.status(400).json({ erros: error.errors.map((e) => e.message) })
+    res.status(400).json(error.message)
   }
 }
