@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken'
 import User from '../models/User'
 
-// eslint-disable-next-line import/prefer-default-export
+// eslint-disable-next-line import/prefer-default-export, consistent-return
 export const store = async (req, res) => {
   const { email = '', password = '' } = req.body
   if (!email || !password) {
